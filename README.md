@@ -86,9 +86,7 @@ pip install "transformers<5" sentence-transformers faiss-cpu torch accelerate gr
 ---
 
 # 📈 Results
-
-تم تقييم النظام على 6 عقود موسومة (Ground Truth) موزعة بين إيجار وعمل وتوريد:
-
+ 
 | المقياس | القيمة |
 |---|---|
 | Precision | 0.83 |
