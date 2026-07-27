@@ -93,7 +93,7 @@ legal-contract-risk-analyzer/
 
 # 📸 Demo
 
-![image](https://github.com/user-attachments/assets/xxxxx.png)
+![Demo Screenshot](demo_screenshot.png)
 
 ---
 
