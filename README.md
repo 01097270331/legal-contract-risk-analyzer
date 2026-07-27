@@ -1,11 +1,90 @@
-تفضلي، هذا هو ملف الـ README.md كاملاً باللغة الإنجليزية ومنسق وجاهز للاستخدام مباشرة على GitHub:🚀 Tips Hindawi Challenge (June–July) 2026🏆 This repository is my official submission for the Tips Hindawi Challenge (June–July) 2026.👤 ParticipantFieldValueFull NameMariam Essam AliProject NameLegal Contract Risk AnalyzerGitHub Username01097270331Challenge BatchJune–July 2026Training ProgramLarge Language Models (LLMs) ProgramOrganizationEdrak for AI📖 Project OverviewAn AI-powered system designed to automatically analyze Arabic contracts (rental, employment, supply) and detect clauses that violate Egyptian law. Users can upload a contract (PDF, TXT, or DOCX), and the system will:Automatically classify the contract type.Segment the contract into individual clauses.Compare each clause against a simplified legal knowledge base using RAG (Retrieval-Augmented Generation).Detect risky or non-compliant clauses with detailed legal explanations.Calculate an overall Risk Score for the contract.Propose fairer alternative phrasing for identified risky clauses.The project is built entirely on custom-crafted datasets (6 realistically drafted contracts + a simplified legal knowledge base + a Ground Truth evaluation file), enabling precise quantitative evaluation (Precision / Recall / F1-Score) instead of relying solely on subjective self-assessment.✨ FeaturesAutomatic Contract Classification: Hybrid system combining keyword extraction and Zero-shot Classification.Multi-Format Text Extraction: Automatically extracts text from PDF, DOCX, and TXT files.Legal Knowledge Base (RAG): Powered by Embeddings + FAISS covering Egyptian rental, labor, and commercial contract laws.Clause-by-Clause Risk Detection: Evaluates each clause independently with legal justifications using LLM Chaining and structured JSON Output Parsers.Relative Risk Scoring: Computes a weighted overall risk score for the uploaded contract.Fair Alternative Generator: Suggests legally balanced rephrasing for problematic clauses.Interactive Web Interface: Built with Gradio for direct file upload and real-time analysis.Ground Truth Evaluation: Quantitative performance metrics measured against annotated benchmark data.🛠️ Technologies UsedPython 3Transformers (Hugging Face): For classification (facebook/bart-large-mnli) and text generation (Qwen/Qwen2.5-1.5B-Instruct)Sentence-Transformers: For generating embeddings (paraphrase-multilingual-MiniLM-L12-v2)FAISS: For document indexing and retrieval (RAG)PyPDF / python-docx: For text extraction from PDF and Word documentsGradio: For building the interactive user interfacePandas / NumPy: For data handling and performance evaluationKaggle Notebooks (GPU): Development and execution environment⚙️ InstallationBashpip install "transformers<5" sentence-transformers faiss-cpu torch accelerate gradio pypdf python-docx
-Project Structure:Plaintextlegal-contract-risk-analyzer/
-├── README.md
-├── notebooks/
-│   └── contract_risk_analyzer.ipynb
-└── data/
-    ├── contracts/       # 6 sample contracts (valid & non-compliant)
-    ├── laws/            # Simplified legal reference (rental, labor, commercial)
-    └── labels/
-        └── risk_labels.json # Ground Truth annotations for evaluation
-Running on Kaggle Notebooks (GPU):Upload the entire data/ folder (including contracts/, laws/, and labels/) as a Kaggle Dataset.Open notebooks/contract_risk_analyzer.ipynb.Link the dataset to the notebook via "+ Add Input".Update the DATA_DIR path in the first cell to match your dataset path on Kaggle (typically /kaggle/input/datasets/<username>/<dataset-name>).Run the cells sequentially.🚀 UsageOpen the Gradio web interface link generated after running the final cell in the notebook.Upload a contract file (.pdf, .txt, or .docx).Click "Analyze Contract".Review the results: contract classification, overall risk score, and detailed clause-by-clause breakdown with legal reasons and proposed alternative phrasings.Download the complete analysis report in JSON format.📸 Demo(Add screenshot / demo GIF here)📈 Results & EvaluationThe system was evaluated against 6 annotated contracts (rental, employment, supply) containing a total of 19 real risky clauses. A Micro-averaged metric was used—aggregating all clauses across all contracts before computing performance—providing a fairer representation of overall system performance without heavily penalizing a single false positive in an otherwise compliant contract.MetricValuePrecision (Micro)0.62Recall (Micro)0.79F1-Score (Micro)0.70True Positives (TP)15 / 19 clausesFalse Positives (FP)9False Negatives (FN)4Generalization CapabilitiesThe system was also tested on completely unseen contracts (rental and labor) outside the legal knowledge base construction. It demonstrated strong generalization capabilities in detecting arbitrary clauses—such as unilateral termination rights or waivers of litigation rights—even when phrased differently from the training examples.Key Accuracy BoostersDomain-Specific RAG Filtering: Filtering the legal knowledge base according to the detected contract type reduced cross-domain law confusion (e.g., mixing labor laws with rental laws) significantly.Rule-Based Safety Net: A keyword fallback mechanism detects well-known illegal phrases (such as waiving court rights) regardless of model response, substantially increasing Recall.⚠️ Known LimitationsThe local generation model (Qwen2.5-1.5B-Instruct) is relatively small to allow execution on resource-constrained GPUs. Consequently, it occasionally produces inaccurate explanations (false positives), particularly on clauses with linguistic ambiguity. Further improvements can be achieved using a larger model or dedicated fine-tuning.🔮 Future ImprovementsFine-Tuning vs. RAG Benchmarking: Comparing custom fine-tuned model performance directly against RAG for clause risk detection.Model Quantization: Applying 4-bit / 8-bit quantization to reduce latency and memory footprint.Contract Version Diffing: Supporting side-by-side comparison between two contract versions to highlight modifications.Interactive Legal Q&A: Adding follow-up multi-turn chat capability after initial analysis.Text-to-Speech (TTS): Providing audio summaries for enhanced accessibility.Dataset Expansion: Extending legal coverage to partnership agreements, powers of attorney, and real estate sales contracts.📚 About the ChallengeThis project was developed as part of the Tips Hindawi Challenge (June–July) 2026.Tips Hindawi is the internships department of Edrak for AI, encouraging participants to build real-world projects, apply practical skills, and showcase their work through GitHub.For more information about the challenge, training programs, and upcoming batches, visit the official Tips Hindawi website.📄 LicenseThis project is shared for educational and portfolio purposes.⚠️ DisclaimerThe legal summaries used in this project are simplified for educational and experimental purposes only and do not constitute formal legal advice. All contracts used in training and evaluation were synthesized specifically for this project and do not represent real-world agreements between actual parties.
+🚀 Tips Hindawi Challenge (June–July) 2026
+
+🏆 This repository is my official submission for the Tips Hindawi Challenge (June–July) 2026.
+👤 Participant
+
+FieldValueFull NameMariam Essam AliProject NameLegal Contract Risk Analyzer (المساعد القانوني الذكي لتحليل العقود)GitHub Username01097270331Challenge BatchJune–July 2026Training ProgramLarge Language Models (LLMs) ProgramOrganizationEdrak for Ai
+📖 Project Overview
+
+نظام ذكاء اصطناعي يحلل العقود العربية (إيجار، عمل، توريد) تلقائيًا ويكتشف البنود المخالفة للقانون المصري. يقوم المستخدم برفع عقد (PDF, TXT, أو DOCX)، ويقوم النظام بـ:
+تصنيف نوع العقد تلقائيًا
+تقسيم العقد إلى بنود
+مقارنة كل بند بقاعدة معرفة قانونية مبسطة عبر تقنية RAG (Retrieval-Augmented Generation)
+كشف البنود الخطرة أو المخالفة للقانون مع شرح السبب
+حساب درجة خطورة إجمالية للعقد (Risk Score)
+اقتراح صياغة بديلة أعدل للبنود الخطرة
+المشروع مبني بالكامل على بيانات مُعدّة خصيصًا (6 عقود بصياغة واقعية + قاعدة معرفة قانونية مبسطة + ملف تقييم Ground Truth)، مما يسمح بقياس دقة النظام فعليًا (Precision/Recall/F1) بدلاً من التقييم الذاتي فقط.
+✨ Features
+
+تصنيف نوع العقد تلقائيًا (نظام هجين: كلمات مفتاحية + Zero-shot Classification)
+استخراج نص من PDF / DOCX / TXT تلقائيًا
+قاعدة معرفة قانونية بتقنية RAG (Embeddings + FAISS) لقوانين الإيجار والعمل والعقود التجارية المصرية
+كشف البنود الخطرة لكل بند على حدة مع شرح قانوني للسبب (باستخدام Chaining + Output Parser بصيغة JSON)
+حساب درجة خطورة إجمالية للعقد (Risk Score) بصيغة نسبية
+اقتراح صياغة بديلة أعدل للبنود الخطرة
+واجهة مستخدم تفاعلية (Gradio) لرفع أي عقد وتحليله مباشرة
+تقييم كمي للنظام مقابل بيانات موسومة (Ground Truth Evaluation)
+🛠️ Technologies Used
+
+Python 3
+Transformers (Hugging Face) — للتصنيف (facebook/bart-large-mnli) والتوليد (Qwen/Qwen2.5-1.5B-Instruct)
+Sentence-Transformers — لتوليد الـ Embeddings (paraphrase-multilingual-MiniLM-L12-v2)
+FAISS — لفهرسة واسترجاع المستندات (RAG)
+PyPDF / python-docx — لاستخراج النصوص من ملفات PDF و Word
+Gradio — لبناء الواجهة التفاعلية
+Pandas / NumPy — لمعالجة البيانات
+Kaggle Notebooks (GPU) — بيئة التطوير والتشغيل
+⚙️ Installation
+
+pip install "transformers<5" sentence-transformers faiss-cpu torch accelerate gradio pypdf python-docx
+
+هيكل المشروع: legal-contract-risk-analyzer/ ├── README.md ├── notebooks/ │ └── contract_risk_analyzer.ipynb └── data/ ├── contracts/ # 6 عقود (سليمة + بها مخالفات) ├── laws/ # مرجع قانوني مبسط (إيجار، عمل، عقود تجارية) └── labels/ └── risk_labels.json # الحقيقة الأرضية (Ground Truth) للتقييم
+المشروع مبني ليعمل على Kaggle Notebooks (مع تفعيل GPU). لتشغيله:
+ارفع مجلد data/ بالكامل (بمحتوياته: contracts, laws, labels) كـ Kaggle Dataset
+افتح النوتبوك notebooks/contract_risk_analyzer.ipynb
+اربط الداتاست بالنوتبوك من "+ Add Input"
+عدّل مسار DATA_DIR في أول خلية ليطابق مسار الداتاست الفعلي على حسابك (يظهر عادة كـ /kaggle/input/datasets/<username>/<dataset-name>)
+شغّل الخلايا بالترتيب
+🚀 Usage
+
+افتح رابط الواجهة (Gradio) الذي يظهر بعد تشغيل آخر خلية في النوتبوك
+ارفع ملف العقد (PDF, TXT, أو DOCX)
+اضغط "حلل العقد"
+استعرض النتيجة: نوع العقد، درجة الخطورة الإجمالية، وتحليل تفصيلي لكل بند مع السبب والصياغة البديلة المقترحة
+حمّل تقرير التحليل الكامل بصيغة JSON
+📸 Demo
+
+
+📈 Results
+
+تم تقييم النظام على 6 عقود موسومة (Ground Truth) موزعة بين إيجار وعمل وتوريد، بإجمالي 19 بندًا خطرًا حقيقيًا موزعة عليها. تم استخدام مقياس Micro-averaged (يجمّع كل البنود من كل العقود قبل حساب المقياس) لأنه يعطي صورة أعدل لأداء النظام الكلي، بدلاً من متوسط بسيط لكل عقد على حدة قد يُعاقب بشدة أي إيجابية كاذبة واحدة في عقد سليم بالكامل.
+المقياسالقيمةPrecision (Micro)0.62Recall (Micro)0.79F1-Score (Micro)0.70البنود المكتشفة صحيحًا (TP)15 من 19إيجابيات كاذبة (FP)9سلبيات كاذبة فائتة (FN)4
+كما تم اختبار النظام على عقود جديدة كليًا (إيجار وعمل) لم تشارك في بناء المعرفة القانونية، وأظهر قدرة جيدة على التعميم (Generalization) في كشف البنود التعسفية مثل حق الفسخ الأحادي والتنازل عن حق التقاضي، حتى مع اختلاف الصياغة اللغوية عن أمثلة التدريب.
+أهم تحسينين رفعا الدقة بشكل ملحوظ
+
+فلترة قاعدة المعرفة القانونية (RAG) حسب نوع العقد المكتشف بدلاً من البحث في كل القوانين معًا — قلّل الخلط بين قانون الإيجار وقانون العمل بشكل كبير.
+شبكة أمان بالكلمات المفتاحية (Rule-Based Safety Net) تكتشف عبارات مخالفة معروفة (كالتنازل عن حق التقاضي) بغض النظر عن رد النموذج، مما رفع الـ Recall بشكل ملحوظ.
+القيود الحالية (Known Limitations)
+
+النموذج المستخدم محليًا (Qwen2.5-1.5B-Instruct) هو نموذج صغير نسبيًا لتوفير التشغيل على GPU محدود الموارد، وهو أحيانًا يُنتج تفسيرات غير دقيقة (إيجابيات كاذبة) خصوصًا في البنود التي تحتوي غموضًا لغويًا. تحسين هذا مستقبلًا ممكن عبر نموذج أكبر أو Fine-tuning مخصص (انظر قسم Future Improvements).
+🔮 Future Improvements
+
+مقارنة أداء Fine-tuning مقابل RAG على نفس مهمة كشف البنود الخطرة
+تطبيق Quantization على نموذج التوليد لتقليل زمن الاستجابة وحجم النموذج
+دعم مقارنة نسختين من نفس العقد (Diff) لتوضيح التغييرات
+إضافة شات تفاعلي (Follow-up Q&A) بعد التحليل
+دعم تحويل الملخص إلى صوت (Text-to-Speech) لسهولة الوصول
+توسيع قاعدة البيانات لتغطية عقود شراكة، توكيل، وبيع عقارات
+📚 About the Challenge
+
+This project was developed as part of the Tips Hindawi Challenge (June–July) 2026.
+Tips Hindawi is the internships department of Edrak for Ai, and the challenge encourages participants to build real-world projects, apply practical skills, and showcase their work through GitHub.
+For more information about the challenge, training programs, and upcoming batches, visit the official Tips Hindawi website.
+📄 License
+
+This project is shared for educational and portfolio purposes.
+⚠️ Disclaimer
+
+الملخصات القانونية المستخدمة في هذا المشروع مبسطة لأغراض تعليمية وتجريبية فقط، وليست بديلاً عن استشارة محامٍ مختص. العقود المستخدمة في التدريب والتقييم مكتوبة خصيصًا لهذا المشروع ولا تمثل عقودًا حقيقية لأي طرف.
+
+ 
