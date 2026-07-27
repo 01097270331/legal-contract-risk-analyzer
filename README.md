@@ -6,12 +6,12 @@
 
 | Field            | Value                                |
 | ---------------- | ------------------------------------ |
-| Full Name        | (اكتبي اسمك الكامل هنا)               |
+| Full Name        | Mariam Essam Ali                     |
 | Project Name     | Legal Contract Risk Analyzer (المساعد القانوني الذكي لتحليل العقود) |
-| GitHub Username  | (اكتبي اسم حسابك على GitHub هنا)      |
+| GitHub Username  | 01097270331                          |
 | Challenge Batch  | June–July 2026                       |
 | Training Program | Large Language Models (LLMs) Program |
-| Organization     | [**Edrak for Ai**](https://edrak4ai.com/en)                         |
+| Organization     | [**Edrak for Ai**](https://edrak4ai.com/en) |                        |
 
 ---
 
@@ -62,17 +62,15 @@ pip install "transformers<5" sentence-transformers faiss-cpu torch accelerate gr
 ```
 
 هيكل المشروع:
-```
 legal-contract-risk-analyzer/
 ├── README.md
 ├── notebooks/
-│   └── contract_risk_analyzer.ipynb
+│ └── contract_risk_analyzer.ipynb
 └── data/
-    ├── contracts/        # 6 عقود (سليمة + بها مخالفات)
-    ├── laws/              # مرجع قانوني مبسط (إيجار، عمل، عقود تجارية)
-    └── labels/
-        └── risk_labels.json   # الحقيقة الأرضية (Ground Truth) للتقييم
-```
+├── contracts/ # 6 عقود (سليمة + بها مخالفات)
+├── laws/ # مرجع قانوني مبسط (إيجار، عمل، عقود تجارية)
+└── labels/
+└── risk_labels.json # الحقيقة الأرضية (Ground Truth) للتقييم
 
 المشروع مبني ليعمل على Kaggle Notebooks (مع تفعيل GPU). لتشغيله:
 1. ارفع مجلد `data/` بالكامل (بمحتوياته: contracts, laws, labels) كـ Kaggle Dataset
@@ -95,7 +93,7 @@ legal-contract-risk-analyzer/
 
 # 📸 Demo
 
-(أضيفي هنا سكرين شوت من الواجهة وهي شغالة، أو رابط فيديو قصير للعرض)
+![image](https://github.com/user-attachments/assets/xxxxx.png)
 
 ---
 
