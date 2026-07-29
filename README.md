@@ -94,7 +94,7 @@ legal-contract-risk-analyzer/
 
 # 📸 Demo
 
-demo_screenshot.png
+Screen Recording 2026-07-27 221914.mp4
 
 ---
 
