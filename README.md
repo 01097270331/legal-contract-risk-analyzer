@@ -93,8 +93,7 @@ legal-contract-risk-analyzer/
 ---
 
 # 📸 Demo
-
-Screen Recording 2026-07-27 221914.mp4
+<video src="Screen Recording 2026-07-27 221914.mp4" controls width="100%"></video>
 
 ---
 
