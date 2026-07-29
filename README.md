@@ -94,7 +94,7 @@ legal-contract-risk-analyzer/
 
 # 📸 Demo
 
-![Demo Screenshot](demo_screenshot.png)
+demo_screenshot.png
 
 ---
 
